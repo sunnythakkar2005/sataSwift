@@ -7,7 +7,7 @@ target 'sataSwift' do
 
   # Pods for sataSwift
     pod 'Parse'
-
+   
   target 'sataSwiftTests' do
     inherit! :search_paths
     # Pods for testing

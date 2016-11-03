@@ -33,9 +33,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         
-        
-        
-        
         cell.myLabel.text = self.posts.valueForKey("Name")[indexPath.item] as? String
         cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         cell.layer.backgroundColor = UIColor.grayColor().CGColor
@@ -56,7 +53,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
         
-        performSegueWithIdentifier("showPostsList", sender: self)
+        //performSegueWithIdentifier("showPostsList", sender: self)
         
         
     }
@@ -80,6 +77,22 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setToolbarHidden(false, animated: true)
+        
+        if (PFUser.currentUser() == nil)
+        {
+            let login:loginViewController = loginViewController()
+            
+            self.navigationController?.presentViewController(login, animated: true, completion: { 
+                
+            })
+        }
+        else
+        {
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,14 +102,14 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
 
         
 
-        
+       /*
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         view.addSubview(blurEffectView)
         view.bringSubviewToFront(collectionView)
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clearColor()*/
         
         //Testing PArse
         
@@ -105,13 +118,32 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             print("Object has been saved.")}*/
         
-        print("Hello World!")
+        var items = [UIBarButtonItem]()
+        items.append(
+            UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+        )
+       
+        
+        items.append(
+            
+            UIBarButtonItem(title: "Me", style:UIBarButtonItemStyle.Done, target: self, action: #selector(ViewController.onClickedToolbeltButton(_:)))
+        )
+        
+        //self.toolbar.setItems(items, animated: true)
+        self.setToolbarItems(items, animated: true)
+        
+        
         
         self.loadCategories()
         
         
         
         
+    }
+    
+    func onClickedToolbeltButton(sender:AnyObject)
+    {
+     print("onClickedToolbeltButton")
     }
     
     func loadCategories() -> Void {

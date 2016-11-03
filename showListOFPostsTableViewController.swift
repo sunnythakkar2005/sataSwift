@@ -35,13 +35,13 @@ class showListOFPostsTableViewController: UIViewController,UITableViewDelegate,U
         // Register the table view cell class and its reuse id
        // self.tableview.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
-
+/*
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 30, width: self.view.bounds.size.width, height: 44))
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "sata");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(showListOFPostsTableViewController.doneBtn));
         navItem.rightBarButtonItem = doneItem;
-        navBar.setItems([navItem], animated: false);
+        navBar.setItems([navItem], animated: false);*/
     }
     
     func doneBtn() {
